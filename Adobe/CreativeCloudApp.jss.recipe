@@ -9,17 +9,19 @@
         <key>Input</key>
         <dict>
             <key>CATEGORY</key>
-            <string>Productivity</string>
+            <string>Graphics and Design</string>
             <key>GROUP_NAME</key>
-            <string>%NAME%-update-smart</string>
+            <string>EDGE-AutoPKG_Testing</string>
             <key>GROUP_TEMPLATE</key>
-            <string>SmartGroupTemplate.xml</string>
+            <string>EDGE-AutoPKG_Testing.xml</string>
             <key>POLICY_CATEGORY</key>
             <string>Testing</string>
             <key>POLICY_TEMPLATE</key>
-            <string>PolicyTemplate.xml</string>
+            <string>PolicyTemplate-ALL-COMPUTERS.xml</string>
             <key>SELF_SERVICE_ICON</key>
             <string>CCDA.png</string>
+	    <key>SITE_NAME</key>
+            <string>None</string>
         </dict>
         <key>MinimumVersion</key>
         <string>1.0.0</string>
