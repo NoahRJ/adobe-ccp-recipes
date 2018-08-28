@@ -18,18 +18,8 @@
             <string>Testing</string>
             <key>POLICY_TEMPLATE</key>
             <string>PolicyTemplate.xml</string>
-            <key>UNINSTALL_CATEGORY</key>
-            <string>Uninstallers</string>
-            <key>UNINSTALL_GROUP_NAME</key>
-            <string>%NAME%-uninstall</string>
-            <key>UNINSTALL_GROUP_TEMPLATE</key>
-            <string>UninstallSmartGroupTemplate.xml</string>
-            <key>UNINSTALL_POLICY_CATEGORY</key>
-            <string>Testing</string>
-            <key>UNINSTALL_POLICY_TEMPLATE</key>
-            <string>UninstallPolicyTemplate.xml</string>
             <key>SELF_SERVICE_ICON</key>
-            <string></string>
+            <string>CCDA.png</string>
         </dict>
         <key>MinimumVersion</key>
         <string>1.0.0</string>
