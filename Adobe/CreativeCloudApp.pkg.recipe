@@ -73,7 +73,7 @@ Other Input values here correspond to options provided in the CCP UI.</string>
                         <key>sapCode</key>
                         <string></string>
                         <key>baseVersion</key>
-                        <string></string>
+                        <string>KCCC</string>
                         <key>version</key>
                         <string>latest</string>
                     </dict>
