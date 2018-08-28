@@ -12,6 +12,8 @@
             <string>Graphics and Design</string>
             <key>GROUP_NAME</key>
             <string>EDGE-AutoPKG_Testing</string>
+	    <key>NAME</key>
+            <string>Adobe Creative Cloud Desktop</string>
             <key>GROUP_TEMPLATE</key>
             <string>EDGE-AutoPKG_Testing.xml</string>
             <key>POLICY_CATEGORY</key>
@@ -83,58 +85,6 @@
             		<string>%destination_path%</string>
             	</dict>
             </dict>
-            <dict>
-				<key>Processor</key>
-				<string>Copier</string>
-				<key>Arguments</key>
-				<dict>
-					<key>source_path</key>
-					<string>%uninstaller_pkg_path%</string>
-					<key>destination_path</key>
-					<string>%RECIPE_CACHE_DIR%/%NAME%_Uninstall-%version%.pkg</string>
-				</dict>
-			</dict>
-            <dict>
-                <key>Arguments</key>
-                <dict>
-                    <key>category</key>
-                    <string>%UNINSTALL_CATEGORY%</string>
-                    <key>groups</key>
-                    <array>
-                        <dict>
-                            <key>name</key>
-                            <string>%UNINSTALL_GROUP_NAME%</string>
-                            <key>smart</key>
-                            <true/>
-                            <key>template_path</key>
-                            <string>%UNINSTALL_GROUP_TEMPLATE%</string>
-                        </dict>
-                    </array>
-                    <key>jss_inventory_name</key>
-				    <string>%jss_inventory_name%</string>
-				    <key>pkg_path</key>
-				    <string>%destination_path%</string>
-                    <key>policy_category</key>
-                    <string>%UNINSTALL_POLICY_CATEGORY%</string>
-                    <key>policy_template</key>
-                    <string>%UNINSTALL_POLICY_TEMPLATE%</string>
-                    <key>prod_name</key>
-                    <string>%NAME%</string>
-                    <key>self_service_icon</key>
-                    <string>%icon_path%</string>
-                </dict>
-                <key>Processor</key>
-                <string>JSSImporter</string>
-            </dict>
-            <dict>
-                <key>Processor</key>
-            	<string>PathDeleter</string>
-				<key>Arguments</key>
-            	<dict>
-            		<key>path_list</key>
-            		<string>%destination_path%</string>
-            	</dict>
-            </dict>
-        </array>
+	</array>
     </dict>
 </plist>
