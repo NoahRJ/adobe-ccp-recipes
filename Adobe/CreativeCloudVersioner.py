@@ -18,6 +18,7 @@
 
 # for now
 # pylint: disable=line-too-long
+#Commented out HD/RIBS/Acrobat processor since only use is for KCCC
 
 import json
 import os
@@ -87,53 +88,53 @@ class CreativeCloudVersioner(Processor):
         self.output("sapCode: %s" % self.env["sapCode"])
         self.env["ccpVersion"] = self.env["prod"][0]["version"]
         self.output("ccpVersion: %s" % self.env["ccpVersion"])
-        self.env["app_json"] = os.path.join(self.env["pkg_path"], "Contents/Resources/HD", self.env["sapCode"] + self.env["ccpVersion"], "Application.json")
-        # If Application.json exists, we"re looking at a HD installer
-        if os.path.exists(self.env["app_json"]):
-            self.output("Installer is HyperDrive")
-            self.output("app_json: %s" % self.env["app_json"])
-            self.process_hd_installer()
-        else:
-            self.output("Installer is RIBS, since path does not exist: {}".format(self.env["app_json"]))
+        #self.env["app_json"] = os.path.join(self.env["pkg_path"], "Contents/Resources/HD", self.env["sapCode"] + self.env["ccpVersion"], "Application.json")
+        # If Application.json exists, we're looking at an HD installer
+        #if os.path.exists(self.env["app_json"]):
+        #    self.output("Installer is HyperDrive")
+        #    self.output("app_json: %s" % self.env["app_json"])
+        #    self.process_hd_installer()
+        #else:
+        #    self.output("Installer is RIBS, since path does not exist: {}".format(self.env["app_json"]))
             # If not a HD installer
             # Legacy Installers: PKG"s but for old titles
             # RIBS: SPGD, LTRM, FLBR, KETK
             # If the above get moved to HD installs, won"t hit this.
             # Acrobat is a "current" title with a PKG installer we can extract needed
             # metadata from
-            if self.env["sapCode"] != "APRO":
-                self.process_ribs_installer(self.env['pkg_path'], sap_code_hint=self.env['sapCode'])
-            else:
-                self.env["proxy_xml"] = os.path.join(self.env["pkg_path"], "Contents/Resources/Setup", self.env["sapCode"] + self.env["ccpVersion"], "proxy.xml")
-                if not os.path.exists(self.env["proxy_xml"]):
-                    raise ProcessorError("APRO selected, proxy.xml not found at %s" % self.env["proxy_xml"])
-                else:
-                    self.process_apro_installer()
+        #    if self.env["sapCode"] != "APRO":
+        #        self.process_ribs_installer(self.env['pkg_path'], sap_code_hint=self.env['sapCode'])
+        #    else:
+        #        self.env["proxy_xml"] = os.path.join(self.env["pkg_path"], "Contents/Resources/Setup", self.env["sapCode"] + self.env["ccpVersion"], "proxy.xml")
+        #        if not os.path.exists(self.env["proxy_xml"]):
+        #            raise ProcessorError("APRO selected, proxy.xml not found at %s" % self.env["proxy_xml"])
+        #        else:
+        #            self.process_apro_installer()
 
-    def process_apro_installer(self):
-        """ Process APRO installer """
-        self.output("Processing Acrobat installer")
-        self.output("proxy_xml: %s" % self.env["proxy_xml"])
-        tree = ElementTree.parse(self.env["proxy_xml"])
-        root = tree.getroot()
-
-        app_bundle_text = root.findtext("./ThirdPartyComponent/Metadata/Properties/Property[@name='path']")
-        app_bundle = app_bundle_text.split('/')[1]
-        self.output("app_bundle: %s" % app_bundle)
-
-        app_path_text = root.findtext('./InstallDir/Platform')
-        self.output(app_path_text)
-        app_path = app_path_text.split('/')[1]
-        self.output("app_path: %s" % app_path)
-
-        installed_path = os.path.join("/Applications", app_path, app_bundle)
-        self.output("installed_path: %s" % installed_path)
-
-        app_version = root.findtext('./InstallerProperties/Property[@name="ProductVersion"]')
-        self.output("app_version: %s" % app_version)
-
-        # Now we have the deets, let"s use them
-        self.create_pkginfo(app_bundle, app_version, installed_path)
+    #def process_apro_installer(self):
+    #    """ Process APRO installer """
+    #    self.output("Processing Acrobat installer")
+    #    self.output("proxy_xml: %s" % self.env["proxy_xml"])
+    #    tree = ElementTree.parse(self.env["proxy_xml"])
+    #    root = tree.getroot()
+    #
+    #    app_bundle_text = root.findtext("./ThirdPartyComponent/Metadata/Properties/Property[@name='path']")
+    #    app_bundle = app_bundle_text.split('/')[1]
+    #    self.output("app_bundle: %s" % app_bundle)
+    #
+    #    app_path_text = root.findtext('./InstallDir/Platform')
+    #    self.output(app_path_text)
+    #    app_path = app_path_text.split('/')[1]
+    #    self.output("app_path: %s" % app_path)
+    #
+    #    installed_path = os.path.join("/Applications", app_path, app_bundle)
+    #    self.output("installed_path: %s" % installed_path)
+    #
+    #    app_version = root.findtext('./InstallerProperties/Property[@name="ProductVersion"]')
+    #    self.output("app_version: %s" % app_version)
+    #
+    #    # Now we have the deets, let"s use them
+    #    self.create_pkginfo(app_bundle, app_version, installed_path)
 
     def process_hd_installer(self):
         """Process HD installer
@@ -205,31 +206,31 @@ class CreativeCloudVersioner(Processor):
                 # Now we have the deets, let's use them
                 self.create_pkginfo(app_bundle, app_version, installed_path)
 
-    def process_ribs_installer(self, pkg_path, sap_code_hint=None):
-        """Extract version number of RIBS based package.
-
-        Args:
-            pkg_path (str): Path to the package that was produced
-            sap_code_hint (str): hint the sap code of the "main" package, to extract the version from.
-        """
-        option_xml_path = os.path.join(pkg_path, 'Contents', 'Resources', 'optionXML.xml')
+    #def process_ribs_installer(self, pkg_path, sap_code_hint=None):
+    #    """Extract version number of RIBS based package.
+    #
+    #   Args:
+    #        pkg_path (str): Path to the package that was produced
+    #        sap_code_hint (str): hint the sap code of the "main" package, to extract the version from.
+    #    """
+    #    option_xml_path = os.path.join(pkg_path, 'Contents', 'Resources', 'optionXML.xml')
         # ribs_root = os.path.join(pkg_path, 'Contents', 'Resources', 'Setup')
 
-        option_xml = ElementTree.parse(option_xml_path)
-        main_media = None
-        for media in option_xml.findall('.//Medias/Media'):  # Media refers to RIBS media only. HD is in HDMedia
-            if media.findtext('SAPCode') == sap_code_hint:
-                main_media = media
-                break
+    #    option_xml = ElementTree.parse(option_xml_path)
+    #    main_media = None
+    #    for media in option_xml.findall('.//Medias/Media'):  # Media refers to RIBS media only. HD is in HDMedia
+    #        if media.findtext('SAPCode') == sap_code_hint:
+    #            main_media = media
+    #            break
 
-        if main_media is None:
-            raise ProcessorError('Could not find main RIBS package indicated by SAP Code {}'.format(sap_code_hint))
+    #   if main_media is None:
+    #       raise ProcessorError('Could not find main RIBS package indicated by SAP Code {}'.format(sap_code_hint))
 
         # media_path = os.path.join(ribs_root, main_media.findtext('TargetFolderName'))
         # if not os.path.exists(media_path):
         #     raise ProcessorError('Could not find Media for RIBS package in path: {}'.format(media_path))
 
-        self.create_pkginfo('NOT_SUPPORTED', main_media.findtext('prodVersion'), '')
+    #   self.create_pkginfo('NOT_SUPPORTED', main_media.findtext('prodVersion'), '')
 
     def create_pkginfo(self, app_bundle, app_version, installed_path):
         """Create pkginfo with found details
