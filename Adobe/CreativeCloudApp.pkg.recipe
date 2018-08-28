@@ -62,7 +62,7 @@ Other Input values here correspond to options provided in the CCP UI.</string>
 
                 <!-- The customer license type: team or enterprise -->
                 <key>customerType</key>
-                <string>team</string>
+                <string>enterprise</string>
                 <key>Language</key>
                 <string>en_US</string>
 
@@ -71,9 +71,9 @@ Other Input values here correspond to options provided in the CCP UI.</string>
                 <array>
                     <dict>
                         <key>sapCode</key>
-                        <string></string>
-                        <key>baseVersion</key>
                         <string>KCCC</string>
+                        <key>baseVersion</key>
+                        <string></string>
                         <key>version</key>
                         <string>latest</string>
                     </dict>
