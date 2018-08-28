@@ -42,11 +42,11 @@ Other Input values here correspond to options provided in the CCP UI.</string>
 
                 <!-- Enable Remote Update Manager -->
                 <key>rumEnabled</key>
-                <true/>
+                <false/>
 
                 <!-- Updates Enabled -->
                 <key>updatesEnabled</key>
-                <false/>
+                <true/>
 
                 <!-- Users may install apps via the Apps panel -->
                 <key>appsPanelEnabled</key>
@@ -58,7 +58,7 @@ Other Input values here correspond to options provided in the CCP UI.</string>
 
                 <!-- Name of the organization (can be retrieved from ~/Library/Logs/PDApp.log) -->
                 <key>organizationName</key>
-                <string>ADMIN_PLEASE_CHANGE</string>
+                <string>Target</string>
 
                 <!-- The customer license type: team or enterprise -->
                 <key>customerType</key>
